@@ -14,7 +14,7 @@ namespace Tsk.Domain.Entities
             get => _name; set
             {
                 Input.ValidateTag(value);
-                _name = value;
+                _name = value.ToLower();
             }
         }
 
