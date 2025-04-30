@@ -8,7 +8,7 @@ namespace Tsk.Domain.Validators
         {
             Strings.NoCommas(input);
             Strings.NoLineBreaks(input);
-            Strings.MaxLength(input, 20);
+            Strings.MaxLength(input, 30);
             Strings.NotWhiteSpace(input);
         }
 
@@ -16,7 +16,7 @@ namespace Tsk.Domain.Validators
         {
             Strings.NoCommas(input);
             Strings.NoLineBreaks(input);
-            Strings.MaxLength(input, 20);
+            Strings.MaxLength(input, 30);
             Strings.NotWhiteSpace(input);
         }
 
