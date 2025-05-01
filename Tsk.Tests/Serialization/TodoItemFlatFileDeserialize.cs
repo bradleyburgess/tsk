@@ -91,5 +91,12 @@ namespace Tsk.Tests.Serialization
             Assert.All(tags, u => result.Tags.Any(t => t.Name == u));
 
         }
+
+        [Fact]
+        public void ShouldError_WithBadDate()
+        {
+            var line = @"[X] 20259999 ""buy milk""";
+            Assert.Throws<FormatException>(() => serializer.Deserialize(line, 1));
+        }
     }
 }
