@@ -16,7 +16,7 @@ namespace Tsk.Domain.Entities
             }
         }
         public DateOnly? DueDate { get; private set; }
-        public bool Completed { get; set; }
+        public bool Completed { get; set; } = false;
         public string? Location { get; set; } = string.Empty;
 
         private List<Tag> _tags = new();
@@ -31,9 +31,7 @@ namespace Tsk.Domain.Entities
             Description = input;
         }
 
-        public void UpdateDueDate(DateOnly dueDate) => DueDate = dueDate;
-
-        public void RemoveDueDate() => DueDate = null;
+        public void UpdateDueDate(DateOnly? dueDate) => DueDate = dueDate;
 
         public void UpdateLocation(string? location)
         {
