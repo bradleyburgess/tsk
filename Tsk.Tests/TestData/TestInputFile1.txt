@@ -1,0 +1,3 @@
+[ ] "buy milk"
+[X] "do grocery run" loc:"Blue Route" tags:shopping,errands
+[ ] 20240501 "go for a walk" loc:Alphen tags:fitness,out-and-about

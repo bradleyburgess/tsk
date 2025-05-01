@@ -91,5 +91,60 @@ namespace Tsk.Tests.Repositories
             var fileRepository = new FlatFileTodoRepository(path, mockFile.Object);
             Assert.Throws<FormatException>(() => fileRepository.LoadTodos());
         }
+
+        [Fact]
+        public void ShouldLoadFromFile()
+        {
+            string path = TestHelpers.ResolveFromSlnRoot("Tsk.Tests", "TestData", "TestInputFile1.txt");
+
+            var fileRepository = new FlatFileTodoRepository(path, new FileReaderWriter());
+            fileRepository.LoadTodos();
+            var result = fileRepository.GetAll().ToList();
+            Assert.Equal(3, result.Count());
+        }
+
+        [Fact]
+        public void ShouldGetTags()
+        {
+            var path = "somefile.txt";
+            string[] lines =
+                [
+                    "[ ] 20250425 \"buy milk\" loc:\"Cape Town\" tags:shopping,errands",
+                    "[X] 20250426 \"go for a walk\" loc:Alphen tags:fitness,out-and-about",
+                    "[ ] \"complete assignment\""
+                ];
+            var mockFile = new Mock<IFileReaderWriter>();
+            mockFile.Setup(f => f.ReadAllLines(path)).Returns(lines);
+            var fileRepository = new FlatFileTodoRepository(path, mockFile.Object);
+            fileRepository.LoadTodos();
+            var result = fileRepository.GetAllTags().ToList();
+            Assert.Equal(4, result.Count());
+            string[] tags = ["shopping", "errands", "fitness", "out-and-about"];
+            foreach (var t in result)
+            {
+                Assert.Contains(t.Name, tags);
+            }
+            Assert.Equal(4, result.Count());
+        }
+
+        [Fact]
+        public void ShouldGetOneTagById()
+        {
+            var path = "somefile.txt";
+            string[] lines =
+                [
+                    "[ ] 20250425 \"buy milk\" loc:\"Cape Town\" tags:shopping,errands",
+                    "[X] 20250426 \"go for a walk\" loc:Alphen tags:fitness,out-and-about",
+                    "[ ] \"complete assignment\""
+                ];
+            var mockFile = new Mock<IFileReaderWriter>();
+            mockFile.Setup(f => f.ReadAllLines(path)).Returns(lines);
+            var fileRepository = new FlatFileTodoRepository(path, mockFile.Object);
+            fileRepository.LoadTodos();
+            var result = fileRepository.GetTodosByTag("fitness")?.ToList();
+            Assert.Equal(1, result?.Count);
+            Assert.Equal(2, result?[0].Id);
+            Assert.Equal("go for a walk", result?[0].Description);
+        }
     }
 }
