@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Tsk.Domain.Entities;
 using Tsk.Domain.Repositories;
@@ -62,7 +63,9 @@ namespace Tsk.Infrastructure.Repositories
 
         public void Save(TodoItem todoItem)
         {
-            // NOTE: Save file
+            if (_list is null) throw new ArgumentNullException("List is not initialized!");
+            string[] data = _list.Select(u => _serializer.Serialize(u)).ToArray();
+            _fileIO.WriteAllLines(_filepath, data);
         }
     }
 }
