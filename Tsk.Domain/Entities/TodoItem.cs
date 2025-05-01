@@ -29,7 +29,7 @@ namespace Tsk.Domain.Entities
         public void MarkComplete() => Completed = true;
         public void MarkIncomplete() => Completed = false;
 
-        public string? Location { get; private set; } = string.Empty;
+        public string? Location { get; private set; } = null;
         public void UpdateLocation(string? location)
         {
             Input.ValidateLocation(location ?? "");

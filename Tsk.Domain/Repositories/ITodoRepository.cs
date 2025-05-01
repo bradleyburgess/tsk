@@ -7,7 +7,7 @@ namespace Tsk.Domain.Repositories
         IEnumerable<TodoItem> GetAll();
         TodoItem? GetById(int id);
         void Add(TodoItem todoItem);
-        void Update(TodoItem todoItem);
+        void Save(TodoItem todoItem); // not needed for flat file
         void Delete(TodoItem todoItem);
     }
 }
