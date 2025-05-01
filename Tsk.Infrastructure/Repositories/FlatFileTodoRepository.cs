@@ -61,7 +61,10 @@ namespace Tsk.Infrastructure.Repositories
         public IEnumerable<TodoItem>? GetTodosByTag(string tag) =>
             _list?.FindAll(t => t.Tags.Any(u => u.Name == tag));
 
-        public void Save(TodoItem todoItem)
+        // Not needed for flat file; including for potential extension to SQL
+        public void Save(TodoItem todoItem) {}
+
+        public void SaveToFile()
         {
             if (_list is null) throw new ArgumentNullException("List is not initialized!");
             string[] data = _list.Select(u => _serializer.Serialize(u)).ToArray();
