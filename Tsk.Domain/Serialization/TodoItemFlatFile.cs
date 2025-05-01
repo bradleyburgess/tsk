@@ -6,13 +6,8 @@ namespace Tsk.Domain.Serialization
 {
     public class TodoItemFlatFileSerializer : ITodoItemSerializer
     {
-        // private static readonly Regex _FlatLineRegex = new(
-        //     @"^\[(?<status>X|\s|\d)\]\s+(?:(?<date>\d{8})\s+)?""(?<desc>[^""]*)""\s+(?<extras>.*)?$",
-        //     RegexOptions.Compiled
-        // );
         private static readonly Regex FlatLineMainRegex = new(
-            // @"^\[(?<status>X|\s)\]\s+((?<date>\d{8})\s+)?""(?<desc>[^""]*)""$",
-            @"^\[(?<status>X|\s|\d)\]\s+((?:(?<date>\d{8})?)\s+)?""(?<desc>[^""]*)""\s?(?<extras>.*)?$", 
+            @"^\[(?<status>X|\s|\d)\]\s+((?:(?<date>\d{8})?)\s+)?""(?<desc>[^""]*)""\s?(?<extras>.*)?$",
             RegexOptions.Compiled
         );
         private static readonly Regex FlatLineExtrasRegex = new(
@@ -33,11 +28,18 @@ namespace Tsk.Domain.Serialization
             DateOnly? date = null;
             if (!string.IsNullOrEmpty(_date))
             {
-                date = new DateOnly(
-                    int.Parse(_date.Substring(0, 4)),
-                    int.Parse(_date.Substring(4, 2)),
-                    int.Parse(_date.Substring(6, 2))
-                );
+                try
+                {
+                    date = new DateOnly(
+                        int.Parse(_date.Substring(0, 4)),
+                        int.Parse(_date.Substring(4, 2)),
+                        int.Parse(_date.Substring(6, 2))
+                    );
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    throw new FormatException($"Bad date in line {lineNum}");
+                }
             }
             string desc = match.Groups["desc"].Value;
             string? location = null;
@@ -46,12 +48,12 @@ namespace Tsk.Domain.Serialization
             if (_extras.Length > 0)
             {
                 var extrasMatches = FlatLineExtrasRegex.Matches(_extras);
-                // if (!extrasMatches.Any(m => m.Success))
-                // {
-                //     var message = "Bad syntax";
-                //     message += $" in line {lineNum.ToString()}";
-                //     throw new FormatException(message);
-                // }
+                if (!extrasMatches.All(m => m.Success))
+                {
+                    var message = "Bad syntax";
+                    message += $" in line {lineNum.ToString()}";
+                    throw new FormatException(message);
+                }
                 foreach (Match m in extrasMatches)
                 {
                     var key = m.Groups["key"].Value;
