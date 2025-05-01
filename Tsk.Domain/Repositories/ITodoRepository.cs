@@ -7,7 +7,7 @@ namespace Tsk.Domain.Repositories
         IEnumerable<TodoItem> GetAll();
         TodoItem? GetById(int id);
         void Add(TodoItem todoItem);
-        void Update(TodoItem todoItem);
+        void Save(TodoItem todoItem);
         void Delete(TodoItem todoItem);
     }
 }
