@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Tsk.Domain\Tsk.Domain.csproj" />
     <ProjectReference Include="..\Tsk.Infrastructure\Tsk.Infrastructure.csproj" />
+    <ProjectReference Include="..\Tsk.CLI\Tsk.CLI.csproj" />
   </ItemGroup>
 
 </Project>
