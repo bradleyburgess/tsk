@@ -4,6 +4,7 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="Tsk.CLI/Tsk.CLI.csproj" />
   <Project Path="Tsk.Domain/Tsk.Domain.csproj" />
   <Project Path="Tsk.Infrastructure/Tsk.Infrastructure.csproj" />
   <Project Path="Tsk.Tests/Tsk.Tests.csproj" />
