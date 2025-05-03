@@ -10,7 +10,7 @@ namespace Tsk.Tests.TestSupport
         public static string Enq(string input) =>
             input.Contains(" ") ? $"\"{input}\"" : input;
 
-        public static string ResolveFromSlnRoot(params string[] relativeSegments)
+        public static string ResolveFromSlnRoot(params string[]? relativeSegments)
         {
             var dir = new DirectoryInfo(AppContext.BaseDirectory);
 
@@ -22,7 +22,7 @@ namespace Tsk.Tests.TestSupport
             if (dir == null)
                 throw new DirectoryNotFoundException("Could not find the solution root containing Tsk.slnx");
 
-            return Path.Combine(new[] { dir.FullName }.Concat(relativeSegments).ToArray());
+            return Path.Combine(new[] { dir.FullName }.Concat(relativeSegments ?? []).ToArray());
         }
     }
 }
