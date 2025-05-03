@@ -4,10 +4,10 @@ public class Helpers
 {
     public static string ExpandUserPath(string path)
     {
-        if (string.IsNullOrWhiteSpace(path)) 
+        if (string.IsNullOrWhiteSpace(path))
             throw new ArgumentException("Path cannot be null or empty.", nameof(path));
 
-        if (path.StartsWith("~/"))
+        if (path.StartsWith("~/") || path.StartsWith("~\\"))
         {
             var home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             return Path.Combine(home, path[2..]); // strips "~/"
