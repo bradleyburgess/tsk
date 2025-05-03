@@ -26,4 +26,19 @@ public class Helpers
             "Application Support"
         )
         : Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+    public static void EnsureTskFile(string? path)
+    {
+        string? _path = path;
+        if (string.IsNullOrEmpty(_path))
+        {
+            _path = AppData.GetDefaultTskPath();
+            Directory.CreateDirectory(Path.GetDirectoryName(_path)!);
+        }
+        string? parentDir = Path.GetDirectoryName(_path);
+        if (string.IsNullOrEmpty(parentDir))
+            throw new ArgumentNullException(parentDir);
+        if (!File.Exists(_path))
+            File.Create(_path!).Close();
+    }
 }
