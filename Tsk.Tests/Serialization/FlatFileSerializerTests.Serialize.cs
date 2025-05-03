@@ -5,7 +5,7 @@ using Bogus;
 
 namespace Tsk.Tests.Serialization
 {
-    public class TodoItemFlatFile_Serialize
+    public class TodoItemFlatFile_SerializeTests
     {
         private readonly TodoTestDataGenerator z = new();
 

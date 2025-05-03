@@ -14,6 +14,6 @@ namespace Tsk.CLI.Utils
                 ? GetDefaultTskPath()
                 : Helpers.ExpandUserPath(userPath);
 
-        public const string TskVersion = "1.0.0";
+        public const string TskVersion = "0.0.1";
     }
 }

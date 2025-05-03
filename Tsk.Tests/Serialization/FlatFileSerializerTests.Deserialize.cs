@@ -7,7 +7,7 @@ using Microsoft.VisualBasic;
 namespace Tsk.Tests.Serialization
 {
 
-    public class TodoItemFlatFileDeserialize
+    public class TodoItemFlatFileDeserializeTests
     {
         private readonly TodoItemFlatFileSerializer serializer = new();
         private readonly Faker f = new();

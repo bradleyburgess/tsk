@@ -1,7 +1,15 @@
+using Spectre.Console;
+
 namespace Tsk.CLI.Utils;
 
 public class Helpers
 {
+    /// <summary>
+    /// Expands a user-specified path, resolving to absolute path.
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns>The fully-qualified absolute path</returns>
+    /// <exception cref="ArgumentException"></exception>
     public static string ExpandUserPath(string path)
     {
         if (string.IsNullOrWhiteSpace(path))
@@ -16,6 +24,10 @@ public class Helpers
         return Path.GetFullPath(path); // normalize relative paths
     }
 
+    /// <summary>
+    /// Returns the user's home directory. Compatible with Windows, MacOS, and Linux.
+    /// </summary>
+    /// <returns>The user's home directory</returns>
     public static string GetUserHomeDirectory() =>
         OperatingSystem.IsWindows()
         ? Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
@@ -27,18 +39,27 @@ public class Helpers
         )
         : Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
-    public static void EnsureTskFile(string? path)
+    /// <summary>
+    /// Ensures that the tsk file exists
+    /// </summary>
+    /// <param name="path"></param>
+    /// <exception cref="ArgumentNullException"></exception>
+    /// <exception cref="DirectoryNotFoundException"></exception>
+    /// <exception cref="UnauthorizedAccessException"></exception>
+    public static void EnsureTskFile(string path)
     {
         string? _path = path;
-        if (string.IsNullOrEmpty(_path))
+        if (_path == AppData.GetDefaultTskPath())
         {
-            _path = AppData.GetDefaultTskPath();
             Directory.CreateDirectory(Path.GetDirectoryName(_path)!);
         }
         string? parentDir = Path.GetDirectoryName(_path);
         if (string.IsNullOrEmpty(parentDir))
             throw new ArgumentNullException(parentDir);
         if (!File.Exists(_path))
+        {
+            AnsiConsole.WriteLine($"Creating {path}.");
             File.Create(_path!).Close();
+        }
     }
 }
