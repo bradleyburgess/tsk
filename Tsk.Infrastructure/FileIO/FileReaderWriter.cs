@@ -10,6 +10,7 @@ namespace Tsk.Infrastructure.FileIO
         public IEnumerable<string> ReadAllLines(string path) =>
             File.ReadAllLines(path);
 
+
         public void WriteAllLines(string path, IEnumerable<string> lines) =>
             File.WriteAllLines(path, lines);
     }

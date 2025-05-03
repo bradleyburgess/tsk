@@ -3,7 +3,7 @@ using Tsk.CLI.Utils;
 
 namespace Tsk.Tests.CliUtils
 {
-    public class AppDataTests
+    public class AppDataTests_GetDefaultTskPath
     {
         [Fact]
         public void ShouldReturnCorrectDefaultTskPath()
