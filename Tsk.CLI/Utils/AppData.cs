@@ -4,17 +4,14 @@ namespace Tsk.CLI.Utils
     {
         public static string GetDefaultTskPath(string tskFileName = "tsk.txt") =>
             Path.Combine(
-                OperatingSystem.IsWindows()
-                ? Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-                : OperatingSystem.IsMacOS()
-                ? Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                    "Library",
-                    "Application Support"
-                )
-                : Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                Helpers.GetUserHomeDirectory(),
                 "tsk",
                 tskFileName
             );
+
+        public static string GetTskPath(string? userPath) =>
+            string.IsNullOrEmpty(userPath)
+                ? GetDefaultTskPath()
+                : Helpers.ExpandUserPath(userPath);
     }
 }
