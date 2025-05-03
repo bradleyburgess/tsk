@@ -7,7 +7,7 @@ namespace Tsk.Infrastructure.Factories
 {
     public class FlatFileTodoRepositoryFactory : ITodoRepositoryFactory
     {
-        public ITodoRepository Create(string path) 
+        public ITodoRepository Create(string path)
         {
             var fileIO = new FileReaderWriter();
             var repo = new FlatFileTodoRepository(path, fileIO);
