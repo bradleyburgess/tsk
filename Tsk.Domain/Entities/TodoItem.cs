@@ -40,7 +40,7 @@ namespace Tsk.Domain.Entities
         public IReadOnlyList<Tag> Tags { get => _tags; }
         public void AddTag(Tag tag)
         {
-            if (!Tags.Any(t => t.Name == tag.Name)) _tags.Add(tag);
+            if (!_tags.Any(t => t.Name == tag.Name)) _tags.Add(tag);
         }
         public void RemoveTag(Tag tag) =>
             _tags.RemoveAll(t => t.Name == tag.Name);
