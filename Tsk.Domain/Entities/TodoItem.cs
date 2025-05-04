@@ -12,13 +12,13 @@ namespace Tsk.Domain.Entities
             get => _description;
             protected set
             {
-                Input.ValidateDescription(value);
+                InputValidators.ValidateDescription(value);
                 _description = value;
             }
         }
         public void UpdateDescription(string input)
         {
-            Input.ValidateDescription(input);
+            InputValidators.ValidateDescription(input);
             Description = input;
         }
 
@@ -32,7 +32,7 @@ namespace Tsk.Domain.Entities
         public string? Location { get; private set; } = null;
         public void UpdateLocation(string? location)
         {
-            Input.ValidateLocation(location ?? "");
+            InputValidators.ValidateLocation(location ?? "");
             Location = location;
         }
 

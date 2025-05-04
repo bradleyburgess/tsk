@@ -40,7 +40,11 @@ namespace Tsk.Infrastructure.Repositories
                     if (!_tags.Any(t => t.Name == tag.Name)) _tags.Add(tag);
         }
 
-        public void Add(TodoItem todoItem) => _list?.Add(todoItem);
+        public void Add(TodoItem todoItem)
+        {
+            _list?.Add(todoItem);
+            SaveToFile();
+        }
 
         public void Delete(TodoItem todoItem)
         {
