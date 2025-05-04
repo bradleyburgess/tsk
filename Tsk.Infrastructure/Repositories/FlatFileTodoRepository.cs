@@ -49,6 +49,7 @@ namespace Tsk.Infrastructure.Repositories
         public void Delete(TodoItem todoItem)
         {
             _list?.RemoveAll(t => t.Id == todoItem.Id);
+            SaveToFile();
         }
 
         public IEnumerable<TodoItem> GetAll()
@@ -60,7 +61,9 @@ namespace Tsk.Infrastructure.Repositories
 
         public IEnumerable<Tag> GetAllTags() => _tags;
 
-        public TodoItem? GetById(int id) => _list?.Find(t => t.Id == id);
+        public TodoItem? GetById(int id) =>
+                _list?.Find(t => t.Id == id) ??
+                throw new ArgumentException($"Todo with id {id} does not exist!");
 
         public IEnumerable<TodoItem>? GetTodosByTag(string tag) =>
             _list?.FindAll(t => t.Tags.Any(u => u.Name == tag));

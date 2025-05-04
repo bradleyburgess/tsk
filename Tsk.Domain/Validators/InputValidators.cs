@@ -4,6 +4,9 @@ namespace Tsk.Domain.Validators
 {
     public static class InputValidators
     {
+        public static void ValidateIdString(string input) =>
+            Strings.IsInteger(input);
+
         public static void ValidateTag(string input)
         {
             Strings.NoCommas(input);
