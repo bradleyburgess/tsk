@@ -16,7 +16,7 @@ namespace Tsk.CLI.Application.Commands
             InitRepository(settings.FileName, _factory);
             try
             {
-                TodoListRenderer.Render(Repo.GetAll());
+                Renderers.RenderTodoList(Repo.GetAll());
                 return 0;
             }
             catch (Exception ex)

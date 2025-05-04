@@ -11,7 +11,7 @@ namespace Tsk.CLI;
 
 class Program
 {
-    static void Main(string[] args)
+    static int Main(string[] args)
     {
         var registrations = new ServiceCollection();
         registrations.AddScoped<ITodoRepositoryFactory, FlatFileTodoRepositoryFactory>();
@@ -24,7 +24,10 @@ class Program
             config.SetApplicationVersion($"v{AppData.TskVersion}");
             config.AddCommand<ListCommand>("list")
                 .WithDescription("List tasks");
+            config.AddCommand<AddCommand>("add")
+                .WithDescription("Add a todo")
+                .WithExample([$"add \"buy milk\" --date {DateTime.Now.ToString("yyyyMMdd")} --loc \"Shoprite\" --tags shopping,errands"]);
         });
-        app.Run(args);
+        return app.Run(args);
     }
 }
