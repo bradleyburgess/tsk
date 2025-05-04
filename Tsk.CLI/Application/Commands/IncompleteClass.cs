@@ -9,13 +9,13 @@ using Spectre.Console;
 
 namespace Tsk.CLI.Application.Commands
 {
-    public class DeleteCommand(ITodoRepositoryFactory factory) : BaseCommand<DeleteCommand.Settings>
+    public class IncompleteCommand(ITodoRepositoryFactory factory) : BaseCommand<IncompleteCommand.Settings>
     {
         private readonly ITodoRepositoryFactory _factory = factory;
 
         public sealed class Settings : BaseCommandSettings
         {
-            [Description("ID of the todo to delete")]
+            [Description("ID of the todo to mark not completed")]
             [CommandArgument(0, "<id>")]
             public string Id { get; set; } = string.Empty;
         }
@@ -28,8 +28,10 @@ namespace Tsk.CLI.Application.Commands
                 InputValidators.ValidateIdString(settings.Id);
                 var id = int.Parse(settings.Id);
                 var todo = Repo.GetById(id);
-                Repo.Delete(todo!);
-                Renderers.RenderSuccess($":cross_mark: Deleted todo with id {id}.");
+                todo!.MarkIncomplete();
+                Repo.Save(todo);
+
+                Renderers.RenderSuccess($":hourglass_not_done: Marked todo {id} as not completed.");
                 return 0;
             }
             catch (Exception ex)

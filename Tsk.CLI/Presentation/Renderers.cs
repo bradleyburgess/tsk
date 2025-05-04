@@ -34,9 +34,9 @@ namespace Tsk.CLI.Presentation
             );
             foreach (var t in list)
             {
-                var row = new Text[]{
+                var row = new IRenderable[]{
                     new Text(t.Id.ToString()).LeftJustified(),
-                    new Text(t.Completed ? "X" : "O").LeftJustified(),
+                    new Markup(t.Completed ? ":check_mark_button:" : ":hourglass_not_done:").LeftJustified(),
                     new Text(t.Description, t.Completed ? new Style(decoration: Decoration.Strikethrough): null).LeftJustified(),
                     new Text(t.DueDate is not null? t.DueDate!.Value.ToString("yyyy-MM-dd") : "").LeftJustified(),
                     new Text(t.Tags.Count > 0 ? string.Join("\n", t.Tags.Select(u => u.Name)) : "").LeftJustified(),
