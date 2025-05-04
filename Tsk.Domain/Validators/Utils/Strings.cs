@@ -26,5 +26,17 @@ namespace Tsk.Domain.Validators.Utils
             if (input.Length > maxLength)
                 throw new ArgumentException($"Cannot be longer than {maxLength}", nameof(input));
         }
+
+        public static void IsInteger(string input)
+        {
+            try
+            {
+                int.Parse(input);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("Input is not a valid integer");
+            }
+        }
     }
 }

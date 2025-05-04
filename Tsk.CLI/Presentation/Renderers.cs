@@ -48,7 +48,7 @@ namespace Tsk.CLI.Presentation
         }
 
         public static void RenderError(string message) =>
-            AnsiConsole.Write(new Markup($"[red][bold]Error:[/][/] ${message}\n"));
+            AnsiConsole.Write(new Markup($"[red][bold]Error:[/][/] {message}\n"));
         
         public static void RenderSuccess(string message) =>
             AnsiConsole.Write(new Markup($"[green]Success![/] {message}\n"));

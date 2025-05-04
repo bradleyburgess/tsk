@@ -22,11 +22,20 @@ class Program
         {
             config.SetApplicationName("tsk");
             config.SetApplicationVersion($"v{AppData.TskVersion}");
+
             config.AddCommand<ListCommand>("list")
                 .WithDescription("List tasks");
+
             config.AddCommand<AddCommand>("add")
                 .WithDescription("Add a todo")
+                .WithExample("add \"update resume\"")
                 .WithExample([$"add \"buy milk\" --date {DateTime.Now.ToString("yyyyMMdd")} --loc \"Shoprite\" --tags shopping,errands"]);
+
+            config.AddCommand<DeleteCommand>("delete")
+                .WithAlias("del")
+                .WithDescription("Delete a todo")
+                .WithExample("delete 2")
+                .WithExample("del 2");
         });
         return app.Run(args);
     }
