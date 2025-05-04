@@ -24,18 +24,41 @@ class Program
             config.SetApplicationVersion($"v{AppData.TskVersion}");
 
             config.AddCommand<ListCommand>("list")
-                .WithDescription("List tasks");
+                .WithDescription("List tasks")
+                .WithAlias("l")
+                .WithExample("list")
+                .WithExample("l");
 
             config.AddCommand<AddCommand>("add")
+                .WithAlias("a")
                 .WithDescription("Add a todo")
                 .WithExample("add \"update resume\"")
                 .WithExample([$"add \"buy milk\" --date {DateTime.Now.ToString("yyyyMMdd")} --loc \"Shoprite\" --tags shopping,errands"]);
 
             config.AddCommand<DeleteCommand>("delete")
                 .WithAlias("del")
+                .WithAlias("d")
                 .WithDescription("Delete a todo")
                 .WithExample("delete 2")
                 .WithExample("del 2");
+
+            config.AddCommand<CompleteCommand>("complete")
+                .WithDescription("Mark a todo as completed")
+                .WithAlias("c")
+                .WithAlias("check")
+                .WithAlias("x")
+                .WithExample("complete 1")
+                .WithExample("x 1")
+                .WithExample("check 1");
+
+            config.AddCommand<IncompleteCommand>("incomplete")
+                .WithDescription("Mark a todo as not completed")
+                .WithAlias("i")
+                .WithAlias("uncheck")
+                .WithAlias("o")
+                .WithExample("incomplete 1")
+                .WithExample("o 1")
+                .WithExample("uncheck 1");
         });
         return app.Run(args);
     }

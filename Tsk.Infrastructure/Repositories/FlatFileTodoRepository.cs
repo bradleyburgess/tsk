@@ -68,8 +68,7 @@ namespace Tsk.Infrastructure.Repositories
         public IEnumerable<TodoItem>? GetTodosByTag(string tag) =>
             _list?.FindAll(t => t.Tags.Any(u => u.Name == tag));
 
-        // Not needed for flat file; including for potential extension to SQL
-        public void Save(TodoItem todoItem) { }
+        public void Save(TodoItem todoItem) => SaveToFile();
 
         public void SaveToFile()
         {

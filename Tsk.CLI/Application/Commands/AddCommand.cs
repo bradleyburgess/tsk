@@ -65,7 +65,7 @@ namespace Tsk.CLI.Application.Commands
                 }
 
                 Repo.Add(todo);
-                Renderers.RenderSuccess($"Added \"{todo.Description}\"");
+                Renderers.RenderSuccess($":plus: Added \"{todo.Description}\"");
                 return 0;
             }
             catch (Exception ex)
