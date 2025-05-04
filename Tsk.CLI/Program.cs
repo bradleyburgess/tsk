@@ -59,6 +59,11 @@ class Program
                 .WithExample("incomplete 1")
                 .WithExample("o 1")
                 .WithExample("uncheck 1");
+
+            config.AddCommand<UpdateCommand>("update")
+                .WithDescription("Update a todo")
+                .WithAlias("u")
+                .WithExample("update 1 --desc \"fix typos in resume\" --loc home");
         });
         return app.Run(args);
     }
