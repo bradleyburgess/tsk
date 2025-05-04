@@ -14,7 +14,7 @@ namespace Tsk.Tests.Factories
         [Fact]
         public void ShouldCreate_FlatFileTodoRepository()
         {
-            var fileName = TestHelpers.ResolveFromSlnRoot("Tsk.Tests", "TestData", "TestInputFile1.txt");
+            var fileName = TestHelpers.ResolveFromSlnRoot("tests", "Tsk.Tests", "TestData", "TestInputFile1.txt");
             var repo = new FlatFileTodoRepositoryFactory().Create(fileName);
             var list = repo.GetAll();
             Assert.Equal(3, list.Count());

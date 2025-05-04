@@ -21,9 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tsk.Domain\Tsk.Domain.csproj" />
-    <ProjectReference Include="..\Tsk.Infrastructure\Tsk.Infrastructure.csproj" />
-    <ProjectReference Include="..\Tsk.CLI\Tsk.CLI.csproj" />
+    <ProjectReference Include="..\..\src\Tsk.Domain\Tsk.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Tsk.Infrastructure\Tsk.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Tsk.CLI\Tsk.CLI.csproj" />
   </ItemGroup>
 
 </Project>

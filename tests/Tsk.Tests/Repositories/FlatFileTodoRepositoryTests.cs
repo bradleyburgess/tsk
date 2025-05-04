@@ -95,7 +95,7 @@ namespace Tsk.Tests.Repositories
         [Fact]
         public void ShouldLoadFromFile()
         {
-            string path = TestHelpers.ResolveFromSlnRoot("Tsk.Tests", "TestData", "TestInputFile1.txt");
+            string path = TestHelpers.ResolveFromSlnRoot("tests", "Tsk.Tests", "TestData", "TestInputFile1.txt");
 
             var fileRepository = new FlatFileTodoRepository(path, new FileReaderWriter());
             fileRepository.LoadTodos();
