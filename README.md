@@ -28,7 +28,7 @@ tagging, due dates, and locations.
     - [Update Task Tags](#update-task-tags)
   - [Location](#location)
   - [Due Date](#due-date)
-- [✍️ Plaintext Editing](#-plaintext-editing)
+- [📝 Plaintext Editing](#-plaintext-editing)
 - [🛣 Roadmap Features](#-roadmap-features)
 - [🧱 Architecture Overview](#-architecture-overview)
 - [🧪 Running Tests](#-running-tests)
