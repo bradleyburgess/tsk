@@ -193,7 +193,7 @@ tsk add "buy milk" --date 20250504
 
 ---
 
-## ✍️ Plaintext Editing
+## 📝 Plaintext Editing
 
 You can edit the plaintext file by hand if you wish! It uses the following DSL /
 format:
