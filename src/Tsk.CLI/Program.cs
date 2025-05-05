@@ -44,7 +44,7 @@ class Program
 
             config.AddCommand<CompleteCommand>("complete")
                 .WithDescription("Mark a todo as completed")
-                .WithAlias("c")
+                .WithAlias("done")
                 .WithAlias("check")
                 .WithAlias("x")
                 .WithExample("complete 1")
@@ -53,7 +53,7 @@ class Program
 
             config.AddCommand<IncompleteCommand>("incomplete")
                 .WithDescription("Mark a todo as not completed")
-                .WithAlias("i")
+                .WithAlias("notdone")
                 .WithAlias("uncheck")
                 .WithAlias("o")
                 .WithExample("incomplete 1")
