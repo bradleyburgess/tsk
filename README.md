@@ -12,27 +12,26 @@ tagging, due dates, and locations.
 
 ## Table of Contents
 
-- [📦 Installation](#installation)
+- [📦 Installation](#-installation)
   - [Prebuilt Binaries](#prebuilt-binaries)
   - [Building from Source](#building-from-source)
   - [Adding `tsk` to Path](#adding-tsk-to-path)
-- [🚀 Basic Usage](#basic-usage)
+- [🚀 Basic Usage](#-basic-usage)
   - [Create a Task](#create-a-task)
   - [List Tasks](#list-tasks)
   - [Mark as Done](#mark-as-done)
   - [Update a Task](#update-a-task)
   - [Delete a Task](#delete-a-task)
-- [🧩 Metadata Support](#metadata-support)
+- [🧩 Metadata Support](#-metadata-support)
   - [Tags](#tags)
     - [New Tasks](#new-tasks)
     - [Update Task Tags](#update-task-tags)
   - [Location](#location)
   - [Due Date](#due-date)
-- [✍️ Plaintext Editing](#plaintext-editing)
-- [🛣 Roadmap Features](#roadmap-features)
-- [🧱 Architecture Overview](#architecture-overview)
-- [🧪 Running Tests](#running-tests)
-
+- [✍️ Plaintext Editing](#-plaintext-editing)
+- [🛣 Roadmap Features](#-roadmap-features)
+- [🧱 Architecture Overview](#-architecture-overview)
+- [🧪 Running Tests](#-running-tests)
 
 ---
 
