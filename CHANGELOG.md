@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.1.2] - 2025-05-05
+
+### Fixed
+- Fixed `release.yml` workflow permissions
+- 
 ## [0.1.1] - 2025-05-05
 
 ### Fixed

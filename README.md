@@ -8,7 +8,7 @@
 C#. It uses a simple plaintext file to store tasks and supports features like
 tagging, due dates, and locations.
 
-> **Version:** `0.1.1` (See the [Changelog](CHANGELOG.md) for release notes.)
+> **Version:** `0.1.2` (See the [Changelog](CHANGELOG.md) for release notes.)
 
 ---
 
