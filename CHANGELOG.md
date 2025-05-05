@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.1.1] - 2025-05-05
+
+### Fixed
+- Fixed broken Windows release packaging in `v0.1.0`
+- Updated GitHub Actions workflow to use cross-platform `dotnet publish` syntax
+
 ## [0.1.0] - 2025-05-05
 
 ### Added
