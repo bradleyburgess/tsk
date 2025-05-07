@@ -4,8 +4,15 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="src/Tsk.CLI/Tsk.CLI.csproj" />
-  <Project Path="src/Tsk.Domain/Tsk.Domain.csproj" />
-  <Project Path="src/Tsk.Infrastructure/Tsk.Infrastructure.csproj" />
-  <Project Path="tests/Tsk.Tests/Tsk.Tests.csproj" />
+  <Folder Name="/tests/">
+    <Project Path="tests/Tsk.CLI.Tests/Tsk.CLI.Tests.csproj" />
+    <Project Path="tests/Tsk.Domain.Tests/Tsk.Domain.Tests.csproj" />
+    <Project Path="tests/Tsk.Infrastructure.Tests/Tsk.Infrastructure.Tests.csproj" />
+    <Project Path="tests/Tsk.TestSupport/Tsk.TestSupport.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Tsk.CLI/Tsk.CLI.csproj" />
+    <Project Path="src/Tsk.Domain/Tsk.Domain.csproj" />
+    <Project Path="src/Tsk.Infrastructure/Tsk.Infrastructure.csproj" />
+  </Folder>
 </Solution>
