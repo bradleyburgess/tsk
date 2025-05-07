@@ -1,6 +1,6 @@
 using Bogus;
 
-namespace Tsk.Tests.TestSupport;
+namespace Tsk.TestSupport;
 
 public enum TodoFields
 {
