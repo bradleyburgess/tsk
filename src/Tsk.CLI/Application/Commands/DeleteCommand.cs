@@ -29,12 +29,12 @@ namespace Tsk.CLI.Application.Commands
                 var id = int.Parse(settings.Id);
                 var todo = Repo.GetById(id);
                 Repo.Delete(todo!);
-                Renderers.RenderSuccess($":cross_mark: Deleted todo with id {id}.");
+                Renderer.RenderSuccess($":cross_mark: Deleted todo with id {id}.");
                 return 0;
             }
             catch (Exception ex)
             {
-                Renderers.RenderError(ex.Message);
+                Renderer.RenderError(ex.Message);
                 return 1;
             }
         }

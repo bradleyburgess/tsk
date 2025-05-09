@@ -62,12 +62,12 @@ namespace Tsk.CLI.Application.Commands
                 UpdateDueDate(settings, todo);
 
                 Repo.Save(todo);
-                Renderers.RenderSuccess($":floppy_disk: Updated todo \"{todo.Id}\"");
+                Renderer.RenderSuccess($":floppy_disk: Updated todo \"{todo.Id}\"");
                 return 0;
             }
             catch (Exception ex)
             {
-                Renderers.RenderError(ex.Message);
+                Renderer.RenderError(ex.Message);
                 return 1;
             }
         }

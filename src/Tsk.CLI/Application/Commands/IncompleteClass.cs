@@ -31,12 +31,12 @@ namespace Tsk.CLI.Application.Commands
                 todo!.MarkIncomplete();
                 Repo.Save(todo);
 
-                Renderers.RenderSuccess($":hourglass_not_done: Marked todo {id} as not completed.");
+                Renderer.RenderSuccess($":hourglass_not_done: Marked todo {id} as not completed.");
                 return 0;
             }
             catch (Exception ex)
             {
-                Renderers.RenderError(ex.Message);
+                Renderer.RenderError(ex.Message);
                 return 1;
             }
         }

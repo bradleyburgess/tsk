@@ -31,12 +31,12 @@ namespace Tsk.CLI.Application.Commands
                 todo!.MarkComplete();
                 Repo.Save(todo);
 
-                Renderers.RenderSuccess($":check_mark: Marked todo {id} as completed.");
+                Renderer.RenderSuccess($":check_mark: Marked todo {id} as completed.");
                 return 0;
             }
             catch (Exception ex)
             {
-                Renderers.RenderError(ex.Message);
+                Renderer.RenderError(ex.Message);
                 return 1;
             }
         }

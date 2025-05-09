@@ -4,7 +4,7 @@ using Tsk.Domain.Entities;
 
 namespace Tsk.CLI.Presentation
 {
-    public static class Renderers
+    public class Renderer : IRenderer
     {
         public static void RenderTodoList(IEnumerable<TodoItem> list)
         {

@@ -26,12 +26,12 @@ namespace Tsk.CLI.Application.Commands
                 var message = $"Directory {Path.GetDirectoryName(resolvedPath)} does not exist!";
                 if (path is not null && path.Contains('$'))
                     message += " It seems like you're trying to use a $variable; please make sure it is resolving correctly.";
-                Renderers.RenderError(message);
+                Renderer.RenderError(message);
                 Environment.Exit(1);
             }
             catch (UnauthorizedAccessException)
             {
-                Renderers.RenderError($"You do not have permission to write to {path}");
+                Renderer.RenderError($"You do not have permission to write to {path}");
                 Environment.Exit(1);
             }
 

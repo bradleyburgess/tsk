@@ -63,13 +63,13 @@ namespace Tsk.CLI.Application.Commands
                 }
 
                 Repo.Add(todo);
-                Renderers.RenderSuccess($":plus: Added \"{todo.Description}\"");
+                Renderer.RenderSuccess($":plus: Added \"{todo.Description}\"");
                 return 0;
             }
             catch (Exception ex)
             {
 
-                Renderers.RenderError(ex.Message);
+                Renderer.RenderError(ex.Message);
                 return 1;
             }
         }
