@@ -1,4 +1,5 @@
 using Bogus;
+using Tsk.Domain.Entities;
 
 namespace Tsk.TestSupport;
 
@@ -33,4 +34,14 @@ public class TodoTestDataGenerator()
         }
         return data;
     }
+
+    public TodoItem GetFakeTodoItem() =>
+        new TodoItem(
+            id: f.Random.Int(1, 1000),
+            description: string.Join(" ", f.Lorem.Words(3)),
+            dueDate: f.Date.SoonDateOnly(),
+            location: f.Address.City(),
+            tags: [new Tag(f.Lorem.Word()), new Tag(string.Join("-", f.Lorem.Words(2)))]
+        );
+
 }

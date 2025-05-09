@@ -5,7 +5,6 @@ using Tsk.CLI.Presentation;
 using System.ComponentModel;
 using Tsk.Domain.Entities;
 using Tsk.Domain.Validators;
-using Spectre.Console;
 using Tsk.CLI.Utils;
 
 namespace Tsk.CLI.Application.Commands
@@ -84,26 +83,44 @@ namespace Tsk.CLI.Application.Commands
 
         private static void UpdateLocation(Settings settings, TodoItem todo)
         {
-            if (!string.IsNullOrEmpty(settings.Location))
+            if (settings.Location is not null)
             {
-                InputValidators.ValidateLocation(settings.Location);
-                todo.UpdateLocation(settings.Location);
+                if (settings.Location == string.Empty)
+                {
+                    todo.UpdateLocation(null);
+                }
+                else
+                {
+                    InputValidators.ValidateLocation(settings.Location);
+                    todo.UpdateLocation(settings.Location);
+                }
             }
         }
 
         private static void UpdateTags(Settings settings, TodoItem todo)
         {
-            if (!string.IsNullOrEmpty(settings.UpdateTags))
+            if (settings.UpdateTags is not null)
             {
-                var updatedTags = Parsers.ParseTagsFromString(settings.UpdateTags);
-                foreach (var t in updatedTags)
-                    todo.AddTag(t);
-                List<Tag> tagsToRemove = new();
-                foreach (var t in todo.Tags)
-                    if (!updatedTags.Any(u => u.Name == t.Name))
-                        tagsToRemove.Add(t);
-                foreach (var t in tagsToRemove)
-                    todo.RemoveTag(t);
+                if (settings.UpdateTags == string.Empty)
+                {
+                    var allTags = todo.Tags.ToList();
+                    foreach (var t in allTags)
+                    {
+                        todo.RemoveTag(t);
+                    }
+                }
+                else if (!string.IsNullOrEmpty(settings.UpdateTags))
+                {
+                    var updatedTags = Parsers.ParseTagsFromString(settings.UpdateTags);
+                    foreach (var t in updatedTags)
+                        todo.AddTag(t);
+                    List<Tag> tagsToRemove = new();
+                    foreach (var t in todo.Tags)
+                        if (!updatedTags.Any(u => u.Name == t.Name))
+                            tagsToRemove.Add(t);
+                    foreach (var t in tagsToRemove)
+                        todo.RemoveTag(t);
+                }
             }
         }
 
@@ -137,7 +154,11 @@ namespace Tsk.CLI.Application.Commands
 
         private static void UpdateDueDate(Settings settings, TodoItem todo)
         {
-            if (settings.DueDate is not null)
+            if (settings.DueDate == string.Empty)
+            {
+                todo.UpdateDueDate(null);
+            }
+            else if (settings.DueDate is not null)
             {
                 InputValidators.ValidateDateString(settings.DueDate);
                 todo.UpdateDueDate(Parsers.ParseDateFromString(settings.DueDate));

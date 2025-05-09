@@ -6,6 +6,7 @@ using System.ComponentModel;
 using Tsk.Domain.Entities;
 using Tsk.Domain.Validators;
 using Spectre.Console;
+using Tsk.CLI.Utils;
 
 namespace Tsk.CLI.Application.Commands
 {
@@ -58,10 +59,7 @@ namespace Tsk.CLI.Application.Commands
                 if (settings.DueDate is not null)
                 {
                     InputValidators.ValidateDateString(settings.DueDate);
-                    var yyyy = int.Parse(settings.DueDate.Substring(0, 4));
-                    var MM = int.Parse(settings.DueDate.Substring(4, 2));
-                    var dd = int.Parse(settings.DueDate.Substring(6, 2));
-                    todo.UpdateDueDate(new DateOnly(yyyy, MM, dd));
+                    todo.UpdateDueDate(Parsers.ParseDateFromString(settings.DueDate));
                 }
 
                 Repo.Add(todo);

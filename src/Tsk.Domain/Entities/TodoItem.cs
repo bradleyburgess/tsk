@@ -32,8 +32,15 @@ namespace Tsk.Domain.Entities
         public string? Location { get; private set; } = null;
         public void UpdateLocation(string? location)
         {
-            InputValidators.ValidateLocation(location ?? "");
-            Location = location;
+            if (string.IsNullOrEmpty(location))
+            {
+                Location = null;
+            }
+            else
+            {
+                InputValidators.ValidateLocation(location);
+                Location = location;
+            }
         }
 
         private List<Tag> _tags = new();
