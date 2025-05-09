@@ -4,6 +4,7 @@ using Tsk.CLI.Application.Commands;
 using Tsk.Domain.Factories;
 using Tsk.Domain.Repositories;
 using Tsk.Domain.Entities;
+using Tsk.CLI.Presentation;
 
 namespace Tsk.CLI.Tests.Application.Commands;
 
@@ -18,10 +19,11 @@ public class ListCommandTests
         var mockRepo = new Mock<ITodoRepository>();
         mockRepo.Setup(r => r.GetAll()).Returns(new List<TodoItem>());
 
+        var mockRenderer = new Mock<SpectreRenderer>();
         var mockFactory = new Mock<ITodoRepositoryFactory>();
         mockFactory.Setup(f => f.Create(It.IsAny<string>())).Returns(mockRepo.Object);
 
-        var cmd = new ListCommand(mockFactory.Object);
+        var cmd = new ListCommand(mockFactory.Object, mockRenderer.Object);
 
         var settings = new ListCommand.Settings
         {

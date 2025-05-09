@@ -9,7 +9,8 @@ using Tsk.CLI.Utils;
 
 namespace Tsk.CLI.Application.Commands
 {
-    public class UpdateCommand(ITodoRepositoryFactory factory) : BaseCommand<UpdateCommand.Settings>
+    public class UpdateCommand(ITodoRepositoryFactory factory, IRenderer renderer)
+        : BaseCommand<UpdateCommand.Settings>(renderer)
     {
         private readonly ITodoRepositoryFactory _factory = factory;
 
@@ -62,12 +63,12 @@ namespace Tsk.CLI.Application.Commands
                 UpdateDueDate(settings, todo);
 
                 Repo.Save(todo);
-                Renderers.RenderSuccess($":floppy_disk: Updated todo \"{todo.Id}\"");
+                _renderer.RenderSuccess($":floppy_disk: Updated todo \"{todo.Id}\"");
                 return 0;
             }
             catch (Exception ex)
             {
-                Renderers.RenderError(ex.Message);
+                _renderer.RenderError(ex.Message);
                 return 1;
             }
         }

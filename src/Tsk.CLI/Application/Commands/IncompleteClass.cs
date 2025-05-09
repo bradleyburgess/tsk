@@ -9,7 +9,8 @@ using Spectre.Console;
 
 namespace Tsk.CLI.Application.Commands
 {
-    public class IncompleteCommand(ITodoRepositoryFactory factory) : BaseCommand<IncompleteCommand.Settings>
+    public class IncompleteCommand(ITodoRepositoryFactory factory, IRenderer renderer)
+        : BaseCommand<IncompleteCommand.Settings>(renderer)
     {
         private readonly ITodoRepositoryFactory _factory = factory;
 
@@ -31,12 +32,12 @@ namespace Tsk.CLI.Application.Commands
                 todo!.MarkIncomplete();
                 Repo.Save(todo);
 
-                Renderers.RenderSuccess($":hourglass_not_done: Marked todo {id} as not completed.");
+                _renderer.RenderSuccess($":hourglass_not_done: Marked todo {id} as not completed.");
                 return 0;
             }
             catch (Exception ex)
             {
-                Renderers.RenderError(ex.Message);
+                _renderer.RenderError(ex.Message);
                 return 1;
             }
         }

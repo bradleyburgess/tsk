@@ -4,32 +4,35 @@ using Tsk.CLI.Application.Commands;
 using Tsk.Domain.Factories;
 using Tsk.Domain.Repositories;
 using Tsk.Domain.Entities;
+using Tsk.TestSupport;
+using Tsk.CLI.Presentation;
 
 namespace Tsk.CLI.Tests.Application.Commands;
 
 public class CompleteCommandTests
 {
     private static readonly Faker f = new();
+    private static readonly TodoTestDataGenerator z = new();
 
     [Fact]
     public void Execute_MarksComplete_ReturnsZero()
     {
         var fileName = f.System.FileName();
-        var id = f.Random.Int(1, 1000);
-        var description = string.Join(" ", f.Lorem.Words(3));
+        var todo = z.GetFakeTodoItem();
+
+        var mockRenderer = new Mock<IRenderer>();
         var mockRepo = new Mock<ITodoRepository>();
-        var fakeTodo = new TodoItem(id: id, description: description);
-        mockRepo.Setup(f => f.GetById(It.Is<int>(s => s == id))).Returns(fakeTodo);
+        mockRepo.Setup(f => f.GetById(It.Is<int>(s => s == todo.Id))).Returns(todo);
 
         var mockFactory = new Mock<ITodoRepositoryFactory>();
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
 
 
-        var cmd = new CompleteCommand(mockFactory.Object);
+        var cmd = new CompleteCommand(mockFactory.Object, mockRenderer.Object);
 
         var settings = new CompleteCommand.Settings
         {
-            Id = id.ToString(),
+            Id = todo.Id.ToString(),
             FileName = fileName,
         };
 

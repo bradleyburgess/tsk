@@ -4,9 +4,9 @@ using Tsk.Domain.Entities;
 
 namespace Tsk.CLI.Presentation
 {
-    public static class Renderers
+    public class SpectreRenderer : IRenderer
     {
-        public static void RenderTodoList(IEnumerable<TodoItem> list)
+        public void RenderTodoList(IEnumerable<TodoItem> list)
         {
             if (!list.Any())
             {
@@ -47,10 +47,10 @@ namespace Tsk.CLI.Presentation
             AnsiConsole.Write(grid);
         }
 
-        public static void RenderError(string message) =>
+        public void RenderError(string message) =>
             AnsiConsole.Write(new Markup($"[red][bold]Error:[/][/] {message}\n"));
         
-        public static void RenderSuccess(string message) =>
+        public void RenderSuccess(string message) =>
             AnsiConsole.Write(new Markup($"[green]Success![/] {message}\n"));
     }
 }

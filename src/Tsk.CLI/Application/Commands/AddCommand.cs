@@ -10,7 +10,8 @@ using Tsk.CLI.Utils;
 
 namespace Tsk.CLI.Application.Commands
 {
-    public class AddCommand(ITodoRepositoryFactory factory) : BaseCommand<AddCommand.Settings>
+    public class AddCommand(ITodoRepositoryFactory factory, IRenderer renderer)
+        : BaseCommand<AddCommand.Settings>(renderer)
     {
         private readonly ITodoRepositoryFactory _factory = factory;
 
@@ -63,13 +64,13 @@ namespace Tsk.CLI.Application.Commands
                 }
 
                 Repo.Add(todo);
-                Renderers.RenderSuccess($":plus: Added \"{todo.Description}\"");
+                _renderer.RenderSuccess($":plus: Added \"{todo.Description}\"");
                 return 0;
             }
             catch (Exception ex)
             {
 
-                Renderers.RenderError(ex.Message);
+                _renderer.RenderError(ex.Message);
                 return 1;
             }
         }

@@ -1,13 +1,36 @@
-using Tsk.CLI.Utils;
+using Tsk.Infrastructure.Utils;
 
 namespace Tsk.CLI.Tests.Utils;
 
-public class AppDataTests_GetDefaultTskPath
+public class HelpersTests_EnsureTskFile
 {
+    [Fact]
+    public void ShouldCreateTskFile()
+    {
+        var tmpDir = Path.GetTempPath();
+        var tmpFile = Path.GetRandomFileName();
+        var tmpPath = Path.Combine(tmpDir, tmpFile);
+        Assert.False(Path.Exists(tmpPath));
+
+        Helpers.EnsureTskFile(tmpPath);
+        Thread.Sleep(1000);
+        Assert.True(Path.Exists(tmpPath));
+    }
+
+    [Fact]
+    public void ShouldErrorWithBadPath()
+    {
+        Assert.Throws<DirectoryNotFoundException>(
+            () => Helpers.EnsureTskFile(
+                Path.Combine(Path.GetTempPath(), "asdfasdf", "asdfasdf.txt")
+            )
+        );
+    }
+
     [Fact]
     public void ShouldReturnCorrectDefaultTskPath()
     {
-        var result = AppData.GetDefaultTskPath();
+        var result = Helpers.GetDefaultTskPath();
         if (OperatingSystem.IsWindows())
         {
             Assert.EndsWith(@"\AppData\Roaming\tsk\tsk.txt", result);
@@ -26,7 +49,7 @@ public class AppDataTests_GetDefaultTskPath
     public void ShouldReturnCustomTskFilename()
     {
         var filename = "custom-filename.txt";
-        var result = AppData.GetDefaultTskPath(filename);
+        var result = Helpers.GetDefaultTskPath(filename);
         if (OperatingSystem.IsWindows())
         {
             Assert.EndsWith($"\\AppData\\Roaming\\tsk\\{filename}", result);

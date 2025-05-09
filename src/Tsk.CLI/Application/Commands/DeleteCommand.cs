@@ -9,7 +9,8 @@ using Spectre.Console;
 
 namespace Tsk.CLI.Application.Commands
 {
-    public class DeleteCommand(ITodoRepositoryFactory factory) : BaseCommand<DeleteCommand.Settings>
+    public class DeleteCommand(ITodoRepositoryFactory factory, IRenderer renderer)
+        : BaseCommand<DeleteCommand.Settings>(renderer)
     {
         private readonly ITodoRepositoryFactory _factory = factory;
 
@@ -29,12 +30,12 @@ namespace Tsk.CLI.Application.Commands
                 var id = int.Parse(settings.Id);
                 var todo = Repo.GetById(id);
                 Repo.Delete(todo!);
-                Renderers.RenderSuccess($":cross_mark: Deleted todo with id {id}.");
+                _renderer.RenderSuccess($":cross_mark: Deleted todo with id {id}.");
                 return 0;
             }
             catch (Exception ex)
             {
-                Renderers.RenderError(ex.Message);
+                _renderer.RenderError(ex.Message);
                 return 1;
             }
         }
