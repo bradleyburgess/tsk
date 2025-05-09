@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Tsk.Domain.Entities;
 using Tsk.Domain.Repositories;
 using Tsk.Domain.Serialization;

@@ -21,8 +21,7 @@ namespace Tsk.CLI.Application.Commands
             }
             catch (Exception ex)
             {
-
-                System.Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
                 return 1;
             }
         }

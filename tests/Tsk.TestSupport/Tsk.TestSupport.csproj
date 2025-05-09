@@ -10,4 +10,8 @@
     <PackageReference Include="Bogus" Version="35.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Tsk.Domain\Tsk.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
