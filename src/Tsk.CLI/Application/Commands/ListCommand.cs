@@ -5,7 +5,8 @@ using Tsk.CLI.Presentation;
 
 namespace Tsk.CLI.Application.Commands
 {
-    public class ListCommand(ITodoRepositoryFactory factory) : BaseCommand<ListCommand.Settings>
+    public class ListCommand(ITodoRepositoryFactory factory, IRenderer renderer)
+        : BaseCommand<ListCommand.Settings>(renderer)
     {
         private readonly ITodoRepositoryFactory _factory = factory;
 
@@ -16,7 +17,7 @@ namespace Tsk.CLI.Application.Commands
             InitRepository(settings.FileName, _factory);
             try
             {
-                Renderer.RenderTodoList(Repo.GetAll());
+                _renderer.RenderTodoList(Repo.GetAll());
                 return 0;
             }
             catch (Exception ex)

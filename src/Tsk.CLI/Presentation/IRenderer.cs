@@ -8,7 +8,8 @@ namespace Tsk.CLI.Presentation
 {
     public interface IRenderer
     {
-        public abstract static void RenderTodoList(IEnumerable<TodoItem> list);
-        public abstract static void RenderError(string message);
+        public void RenderTodoList(IEnumerable<TodoItem> list);
+        public void RenderError(string message);
+        public void RenderSuccess(string message);
     }
 }

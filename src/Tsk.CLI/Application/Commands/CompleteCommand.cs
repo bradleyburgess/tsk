@@ -9,7 +9,8 @@ using Spectre.Console;
 
 namespace Tsk.CLI.Application.Commands
 {
-    public class CompleteCommand(ITodoRepositoryFactory factory) : BaseCommand<CompleteCommand.Settings>
+    public class CompleteCommand(ITodoRepositoryFactory factory, IRenderer renderer) 
+        : BaseCommand<CompleteCommand.Settings>(renderer)
     {
         private readonly ITodoRepositoryFactory _factory = factory;
 
@@ -31,12 +32,12 @@ namespace Tsk.CLI.Application.Commands
                 todo!.MarkComplete();
                 Repo.Save(todo);
 
-                Renderer.RenderSuccess($":check_mark: Marked todo {id} as completed.");
+                _renderer.RenderSuccess($":check_mark: Marked todo {id} as completed.");
                 return 0;
             }
             catch (Exception ex)
             {
-                Renderer.RenderError(ex.Message);
+                _renderer.RenderError(ex.Message);
                 return 1;
             }
         }

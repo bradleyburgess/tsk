@@ -5,6 +5,7 @@ using Tsk.Domain.Factories;
 using Tsk.Domain.Repositories;
 using Tsk.Domain.Entities;
 using Tsk.TestSupport;
+using Tsk.CLI.Presentation;
 
 namespace Tsk.CLI.Tests.Application.Commands;
 
@@ -26,7 +27,7 @@ public class UpdateCommandTests
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
 
 
-        var cmd = new UpdateCommand(mockFactory.Object);
+        var cmd = new UpdateCommand(mockFactory.Object, new Mock<IRenderer>().Object);
 
         var settings = new UpdateCommand.Settings
         {
@@ -54,8 +55,7 @@ public class UpdateCommandTests
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
 
 
-        var cmd = new UpdateCommand(mockFactory.Object);
-
+        var cmd = new UpdateCommand(mockFactory.Object, new Mock<IRenderer>().Object);
         var settings = new UpdateCommand.Settings
         {
             Id = todo.Id.ToString(),
@@ -81,8 +81,7 @@ public class UpdateCommandTests
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
 
 
-        var cmd = new UpdateCommand(mockFactory.Object);
-
+        var cmd = new UpdateCommand(mockFactory.Object, new Mock<IRenderer>().Object);
         var settings = new UpdateCommand.Settings
         {
             Id = todo.Id.ToString(),
@@ -108,8 +107,7 @@ public class UpdateCommandTests
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
 
 
-        var cmd = new UpdateCommand(mockFactory.Object);
-
+        var cmd = new UpdateCommand(mockFactory.Object, new Mock<IRenderer>().Object);
         var settings = new UpdateCommand.Settings
         {
             Id = todo.Id.ToString(),
@@ -135,8 +133,7 @@ public class UpdateCommandTests
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
 
 
-        var cmd = new UpdateCommand(mockFactory.Object);
-
+        var cmd = new UpdateCommand(mockFactory.Object, new Mock<IRenderer>().Object);
         var settings = new UpdateCommand.Settings
         {
             Id = todo.Id.ToString(),
@@ -162,8 +159,7 @@ public class UpdateCommandTests
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
 
 
-        var cmd = new UpdateCommand(mockFactory.Object);
-
+        var cmd = new UpdateCommand(mockFactory.Object, new Mock<IRenderer>().Object);
         var settings = new UpdateCommand.Settings
         {
             Id = todo.Id.ToString(),
@@ -189,8 +185,7 @@ public class UpdateCommandTests
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
 
 
-        var cmd = new UpdateCommand(mockFactory.Object);
-
+        var cmd = new UpdateCommand(mockFactory.Object, new Mock<IRenderer>().Object);
         var settings = new UpdateCommand.Settings
         {
             Id = todo.Id.ToString(),
@@ -216,8 +211,7 @@ public class UpdateCommandTests
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
 
 
-        var cmd = new UpdateCommand(mockFactory.Object);
-
+        var cmd = new UpdateCommand(mockFactory.Object, new Mock<IRenderer>().Object);
         var settings = new UpdateCommand.Settings
         {
             Id = todo.Id.ToString(),
@@ -246,8 +240,7 @@ public class UpdateCommandTests
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
 
 
-        var cmd = new UpdateCommand(mockFactory.Object);
-
+        var cmd = new UpdateCommand(mockFactory.Object, new Mock<IRenderer>().Object);
         var settings = new UpdateCommand.Settings
         {
             Id = todo.Id.ToString(),
@@ -277,8 +270,7 @@ public class UpdateCommandTests
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
 
 
-        var cmd = new UpdateCommand(mockFactory.Object);
-
+        var cmd = new UpdateCommand(mockFactory.Object, new Mock<IRenderer>().Object);
         var settings = new UpdateCommand.Settings
         {
             Id = todo.Id.ToString(),

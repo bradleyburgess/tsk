@@ -4,6 +4,7 @@ using Tsk.CLI.Application.Commands;
 using Tsk.Domain.Factories;
 using Tsk.Domain.Repositories;
 using Tsk.Domain.Entities;
+using Tsk.CLI.Presentation;
 
 namespace Tsk.CLI.Tests.Application.Commands;
 
@@ -17,13 +18,15 @@ public class AddCommandTests
         var id = f.Random.Int(1, 1000);
         var filename = f.System.FileName();
         var description = string.Join(" ", f.Lorem.Words(3));
+
+        var mockRenderer = new Mock<IRenderer>();
         var mockRepo = new Mock<ITodoRepository>();
         mockRepo.Setup(r => r.GetAll()).Returns(new List<TodoItem>());
 
         var mockFactory = new Mock<ITodoRepositoryFactory>();
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
 
-        var cmd = new AddCommand(mockFactory.Object);
+        var cmd = new AddCommand(mockFactory.Object, mockRenderer.Object);
 
         var settings = new AddCommand.Settings
         {

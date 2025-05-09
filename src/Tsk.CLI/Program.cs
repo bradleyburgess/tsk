@@ -5,6 +5,7 @@ using Tsk.Domain.Factories;
 using Tsk.Infrastructure.Factories;
 using Tsk.CLI.Application.Commands;
 using Tsk.CLI.Utils;
+using Tsk.CLI.Presentation;
 
 
 namespace Tsk.CLI;
@@ -15,6 +16,7 @@ class Program
     {
         var registrations = new ServiceCollection();
         registrations.AddScoped<ITodoRepositoryFactory, FlatFileTodoRepositoryFactory>();
+        registrations.AddScoped<IRenderer, SpectreRenderer>();
         var registrar = new TypeRegistrar(registrations);
 
         var app = new CommandApp(registrar);
