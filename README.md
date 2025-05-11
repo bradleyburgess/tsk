@@ -8,7 +8,7 @@
 C#. It uses a simple plaintext file to store tasks and supports features like
 tagging, due dates, and locations.
 
-> **Version:** `0.1.3` (See the [Changelog](CHANGELOG.md) for release notes.)
+> **Version:** `0.2.0` (See the [Changelog](CHANGELOG.md) for release notes.)
 
 ---
 
@@ -21,6 +21,7 @@ tagging, due dates, and locations.
 - [🚀 Basic Usage](#-basic-usage)
   - [Create a Task](#create-a-task)
   - [List Tasks](#list-tasks)
+    - [Sorting](#sorting)
   - [Mark as Done](#mark-as-done)
   - [Update a Task](#update-a-task)
   - [Delete a Task](#delete-a-task)
@@ -102,6 +103,19 @@ tsk a   # alias
 ```bash
 tsk list
 tsk l     # alias
+```
+
+#### Sorting
+
+By default, the list is sorted with incomplete tasks first.
+
+You can also sort the list by description (`"description"|"desc"`), location
+(`"location"|"loc"`) or date (`"duedate"|"date"`):
+
+```bash
+tsk list --sort-by desc  # or `description`
+tsk list --sort-by loc   # or `location`
+tsk list --sort-by date  # or `duedate`
 ```
 
 ### Mark as Done
