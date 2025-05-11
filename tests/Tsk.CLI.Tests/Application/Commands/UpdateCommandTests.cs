@@ -25,9 +25,9 @@ public class UpdateCommandTests
 
         var mockFactory = new Mock<ITodoRepositoryFactory>();
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
+        var mockRenderer = new Mock<IRenderer>();
 
-
-        var cmd = new UpdateCommand(mockFactory.Object, new Mock<IRenderer>().Object);
+        var cmd = new UpdateCommand(mockFactory.Object, mockRenderer.Object);
 
         var settings = new UpdateCommand.Settings
         {
@@ -40,6 +40,7 @@ public class UpdateCommandTests
 
         Assert.Equal(0, result);
         mockRepo.Verify(r => r.Save(It.Is<TodoItem>(s => s.Description == newDescription)));
+        mockRenderer.Verify(f => f.RenderSuccess(It.IsAny<string>()), Times.Once);
     }
 
     [Fact]
@@ -53,9 +54,10 @@ public class UpdateCommandTests
 
         var mockFactory = new Mock<ITodoRepositoryFactory>();
         mockFactory.Setup(f => f.Create(It.IsAny<string?>()!)).Returns(mockRepo.Object);
+        var mockRenderer = new Mock<IRenderer>();
 
 
-        var cmd = new UpdateCommand(mockFactory.Object, new Mock<IRenderer>().Object);
+        var cmd = new UpdateCommand(mockFactory.Object, mockRenderer.Object);
         var settings = new UpdateCommand.Settings
         {
             Id = todo.Id.ToString(),
@@ -67,6 +69,7 @@ public class UpdateCommandTests
 
         Assert.Equal(0, result);
         mockRepo.Verify(r => r.Save(It.Is<TodoItem>(s => s.Location == newLocation)));
+        mockRenderer.Verify(f => f.RenderSuccess(It.IsAny<string>()), Times.Once);
     }
 
     [Fact]

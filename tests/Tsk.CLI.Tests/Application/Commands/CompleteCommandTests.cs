@@ -40,5 +40,6 @@ public class CompleteCommandTests
 
         Assert.Equal(0, result);
         mockRepo.Verify(r => r.Save(It.Is<TodoItem>(s => s.Completed == true)), Times.Once);
+        mockRenderer.Verify(f => f.RenderSuccess(It.IsAny<string>()), Times.Once);
     }
 }
