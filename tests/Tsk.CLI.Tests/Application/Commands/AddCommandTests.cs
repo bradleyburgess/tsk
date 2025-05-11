@@ -38,5 +38,6 @@ public class AddCommandTests
 
         Assert.Equal(0, result);
         mockRepo.Verify(r => r.Add(It.Is<TodoItem>(t => t.Description == description)), Times.Once);
+        mockRenderer.Verify(f => f.RenderSuccess(It.IsAny<string>()), Times.Once);
     }
 }

@@ -40,5 +40,6 @@ public class DeleteCommandTests
 
         Assert.Equal(0, result);
         mockRepo.Verify(r => r.Delete(It.Is<TodoItem>(s => s.Id == todo.Id)), Times.Once);
+        mockRenderer.Verify(f => f.RenderSuccess(It.IsAny<string>()), Times.Once);
     }
 }
